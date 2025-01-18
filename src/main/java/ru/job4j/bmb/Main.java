@@ -1,4 +1,4 @@
-package ru.job4j;
+package ru.job4j.bmb;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +11,7 @@ import ru.job4j.bmb.services.TelegramBotService;
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-        SpringApplication.run(ru.job4j.bmb.Main.class, args);
+        SpringApplication.run(Main.class, args);
     }
 
     @Bean
