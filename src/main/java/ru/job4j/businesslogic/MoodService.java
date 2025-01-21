@@ -1,12 +1,24 @@
 package ru.job4j.businesslogic;
 
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
-public class MoodService {
+public class MoodService implements BeanNameAware {
+
+    private String beanName;
+
+    @Override
+    public void setBeanName(String name) {
+        this.beanName = name;
+    }
+
+    public void displayBeanName() {
+        System.out.println(beanName);
+    }
 
     @PostConstruct
     public void init() {
