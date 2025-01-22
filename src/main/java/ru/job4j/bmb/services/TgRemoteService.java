@@ -29,7 +29,6 @@ public class TgRemoteService extends TelegramLongPollingBot {
         MOOD_RESP.put("sleepy", "Пора на боковую! Даже супергерои отдыхают, ты не исключение.");
     }
 
-
     public TgRemoteService(@Value("${telegram.bot.name}") String botName,
                            @Value("${telegram.bot.token}") String botToken1) {
         this.botName = botName;
