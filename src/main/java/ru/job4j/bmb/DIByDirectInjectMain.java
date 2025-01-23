@@ -11,5 +11,4 @@ public class DIByDirectInjectMain {
         var tg = new TelegramBotService(handler);
         tg.receive(new Content(along));
     }
-    }
 }
