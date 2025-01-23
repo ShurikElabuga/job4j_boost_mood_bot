@@ -4,6 +4,7 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 public class Content {
+
     private final Long chatId;
     private String text;
     private InputFile photo;
