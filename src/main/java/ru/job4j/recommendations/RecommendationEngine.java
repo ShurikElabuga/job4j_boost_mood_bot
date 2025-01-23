@@ -11,6 +11,7 @@ import java.util.Random;
 
 @Service
 public class RecommendationEngine {
+
     private final List<ContentProvider> contents;
     private static final Random RND = new Random(System.currentTimeMillis());
 

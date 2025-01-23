@@ -8,7 +8,6 @@ public class ContentProviderAudio implements ContentProvider {
 
     @Override
     public Content byMood(Long chatId, Long moodId) {
-
         var content = new Content(chatId);
         content.setAudio(new InputFile(new File("./audio/music.mp3")));
         return content;
