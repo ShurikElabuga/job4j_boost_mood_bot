@@ -6,8 +6,10 @@ import ru.job4j.bmb.services.TelegramBotService;
 
 public class DIByDirectInjectMain {
     public static void main(String[] args) {
+        Long along = 8787877878777L;
         var handler = new BotCommandHandler();
         var tg = new TelegramBotService(handler);
-        tg.receive(new Content());
+        tg.receive(new Content(along));
+    }
     }
 }
