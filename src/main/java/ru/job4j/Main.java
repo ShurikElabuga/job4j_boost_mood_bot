@@ -9,6 +9,7 @@ import ru.job4j.bmb.services.TelegramBotService;
 
 public class Main {
     Long aLong = 64363636363636L;
+
     public static void main(String[] args) {
         SpringApplication.run(ru.job4j.bmb.Main.class, args);
     }
