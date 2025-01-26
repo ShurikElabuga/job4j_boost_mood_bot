@@ -18,7 +18,6 @@ import java.util.Map;
 
 @Service
 public class TgRemoteService extends TelegramLongPollingBot {
-
     private final String botName;
     private final String botToken;
     private final UserRepository userRepository;
@@ -33,7 +32,8 @@ public class TgRemoteService extends TelegramLongPollingBot {
     }
 
     public TgRemoteService(@Value("${telegram.bot.name}") String botName,
-                           @Value("${telegram.bot.token}") String botToken1, UserRepository userRepository) {
+                           @Value("${telegram.bot.token}") String botToken1,
+                           UserRepository userRepository) {
         this.botName = botName;
         this.botToken = botToken1;
         this.userRepository = userRepository;

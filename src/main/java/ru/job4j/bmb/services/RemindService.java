@@ -7,6 +7,7 @@ import ru.job4j.bmb.repository.UserRepository;
 
 @Service
 public class RemindService {
+
     private final TgRemoteService tgRemoteService;
     private final UserRepository userRepository;
 

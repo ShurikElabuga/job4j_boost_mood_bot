@@ -1,4 +1,4 @@
-package ru.job4j.recommendations;
+package ru.job4j.bmb.services;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.bmb.content.Content;
@@ -11,6 +11,7 @@ import java.util.Random;
 
 @Service
 public class RecommendationEngine {
+
     private final List<ContentProvider> contents;
     private static final Random RND = new Random(System.currentTimeMillis());
 

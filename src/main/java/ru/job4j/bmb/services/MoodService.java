@@ -1,4 +1,4 @@
-package ru.job4j.businesslogic;
+package ru.job4j.bmb.services;
 
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
-public class AchievementService implements BeanNameAware {
+public class MoodService implements BeanNameAware {
+
 
     private String beanName;
 

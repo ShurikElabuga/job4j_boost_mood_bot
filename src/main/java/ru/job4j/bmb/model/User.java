@@ -3,6 +3,7 @@ package ru.job4j.bmb.model;
 import java.util.Objects;
 
 public class User {
+    
     private Long id;
     private long clientId;
     private long chatId;
