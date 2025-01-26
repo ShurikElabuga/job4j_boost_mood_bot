@@ -8,8 +8,6 @@ import javax.annotation.PreDestroy;
 
 @Component
 public class AchievementService implements BeanNameAware {
-
-
     private String beanName;
 
     @Override

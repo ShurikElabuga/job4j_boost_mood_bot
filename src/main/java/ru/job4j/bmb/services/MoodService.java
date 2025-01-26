@@ -8,8 +8,6 @@ import javax.annotation.PreDestroy;
 
 @Component
 public class MoodService implements BeanNameAware {
-
-
     private String beanName;
 
     @Override
