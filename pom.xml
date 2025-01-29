@@ -26,7 +26,9 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-parent</artifactId>
+            <version>3.4.2</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
