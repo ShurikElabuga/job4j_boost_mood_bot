@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface AchievementRepository extends CrudRepository<Achievement, Long> {
     List<Achievement> findAll();
+
     List<Achievement> findByUserId(Long clientId);
 }
