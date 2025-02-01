@@ -12,9 +12,11 @@ import java.util.Optional;
 
 @Service
 public class BotCommandHandler {
+
     private final UserRepository userRepository;
     private final MoodService moodService;
     private final TgUI tgUI;
+
 
     public BotCommandHandler(UserRepository userRepository,
                              MoodService moodService,
