@@ -8,11 +8,11 @@ import ru.job4j.bmb.repository.UserRepository;
 @Service
 public class RemindService {
 
-    private final TgRemoteService tgRemoteService;
+    private final TelegramBotService telegramBotService;
     private final UserRepository userRepository;
 
-    public RemindService(TgRemoteService tgRemoteService, UserRepository userRepository) {
-        this.tgRemoteService = tgRemoteService;
+    public RemindService(TelegramBotService telegramBotService, UserRepository userRepository) {
+        this.telegramBotService = telegramBotService;
         this.userRepository = userRepository;
     }
 
@@ -22,7 +22,6 @@ public class RemindService {
             var message = new SendMessage();
             message.setChatId(user.getChatId());
             message.setText("Ping");
-            tgRemoteService.send(message);
         }
     }
 }
