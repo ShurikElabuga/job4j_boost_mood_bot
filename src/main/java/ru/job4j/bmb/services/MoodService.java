@@ -61,19 +61,6 @@ public class MoodService {
         return Optional.of(content);
     }
 
-    public List<MoodLog> listMoodLogForPeriod(Long clientId, Period period) {
-        List<MoodLog> logs = moodLogRepository.findAll()
-                .stream()
-                .filter(moodLog -> moodLog.getId().equals(clientId))
-                .toList();
-        long specPeriod = LocalDateTime.now().minus(period)
-                .toInstant(ZoneOffset.UTC).toEpochMilli();
-        List<MoodLog> logsForMonth = logs.stream()
-                .filter(moodLog -> (moodLog.getCreatedAt()) == specPeriod)
-                .toList();
-        return logsForMonth;
-    }
-
     private String formatMoodLogs(List<MoodLog> logs, String title) {
         if (logs.isEmpty()) {
             return title + ":\nNo mood logs found.";
@@ -98,5 +85,18 @@ public class MoodService {
         var content = new Content(chatId);
         content.setText(txt.toString());
         return Optional.of(content);
+    }
+
+    public List<MoodLog> listMoodLogForPeriod(Long clientId, Period period) {
+        List<MoodLog> logs = moodLogRepository.findAll()
+                .stream()
+                .filter(moodLog -> moodLog.getId().equals(clientId))
+                .toList();
+        long specPeriod = LocalDateTime.now().minus(period)
+                .toInstant(ZoneOffset.UTC).toEpochMilli();
+        List<MoodLog> logsForMonth = logs.stream()
+                .filter(moodLog -> (moodLog.getCreatedAt()) == specPeriod)
+                .toList();
+        return logsForMonth;
     }
 }
