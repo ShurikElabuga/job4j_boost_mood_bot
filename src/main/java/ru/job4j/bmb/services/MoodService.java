@@ -7,9 +7,8 @@ import ru.job4j.bmb.repository.AchievementRepository;
 import ru.job4j.bmb.repository.MoodLogRepository;
 import ru.job4j.bmb.repository.MoodRepository;
 import ru.job4j.bmb.repository.UserRepository;
-import java.time.Instant;
-import java.time.Period;
-import java.time.ZoneId;
+
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -45,19 +44,34 @@ public class MoodService {
     }
 
     public Optional<Content> weekMoodLogCommand(long chatId, Long clientId) {
-        List<MoodLog> logs = moodLogRepository.findForPeriod(clientId, Period.ofWeeks(1));
-        String formatLogs = formatMoodLogs(logs, "Logs for the past week");
+        Period period = Period.ofWeeks(1);
+        List<MoodLog> logsForWeek = listMoodLogForPeriod(clientId, period);
+        String formatLogs = formatMoodLogs(logsForWeek, "Logs for the past week");
         var content = new Content(chatId);
         content.setText(formatLogs);
         return Optional.of(content);
     }
 
     public Optional<Content> monthMoodLogCommand(long chatId, Long clientId) {
-        List<MoodLog> logs = moodLogRepository.findForPeriod(clientId, Period.ofMonths(1));
-        String formatLogs = formatMoodLogs(logs, "Logs for the past month");
+        Period period = Period.ofMonths(1);
+        List<MoodLog> logsForMonth = listMoodLogForPeriod(clientId, period);
+        String formatLogs = formatMoodLogs(logsForMonth, "Logs for the past month");
         var content = new Content(chatId);
         content.setText(formatLogs);
         return Optional.of(content);
+    }
+
+    public List<MoodLog> listMoodLogForPeriod(Long clientId, Period period) {
+        List<MoodLog> logs = moodLogRepository.findAll()
+                .stream()
+                .filter(moodLog -> moodLog.getId().equals(clientId))
+                .toList();
+        long specPeriod = LocalDateTime.now().minus(period)
+                .toInstant(ZoneOffset.UTC).toEpochMilli();
+        List<MoodLog> logsForMonth = logs.stream()
+                .filter(moodLog -> (moodLog.getCreatedAt()) == specPeriod)
+                .toList();
+        return logsForMonth;
     }
 
     private String formatMoodLogs(List<MoodLog> logs, String title) {

@@ -28,6 +28,9 @@ public class MoodLog {
         this.createdAt = createdAt;
     }
 
+    public MoodLog() {
+    }
+
     public Long getId() {
         return id;
     }
