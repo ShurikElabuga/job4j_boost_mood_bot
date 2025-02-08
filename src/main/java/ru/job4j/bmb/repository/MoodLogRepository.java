@@ -11,9 +11,9 @@ public interface MoodLogRepository extends CrudRepository<MoodLog, Long> {
 
     List<MoodLog> findAll();
 
-    List<User> findUsersWhoDidNotVoteToday(long startOfDay, long endOfDay);
-
     List<MoodLog> findByUserId(Long userId);
+
+    List<User> findUsersWhoDidNotVoteToday(long startOfDay, long endOfDay);
 
     Stream<MoodLog> findByUserIdOrderByCreatedAtDesc(Long userId);
 
