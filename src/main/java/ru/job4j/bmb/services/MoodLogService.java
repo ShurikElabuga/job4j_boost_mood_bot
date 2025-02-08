@@ -24,6 +24,7 @@ public class MoodLogService {
     List<MoodLog> findByUserId(Long userId) {
         return moodLogRepository.findByUserId(userId);
     }
+
     List<User> findUsersWhoDidNotVoteToday(long startOfDay, long endOfDay) {
         List<MoodLog> list = findAll();
         return  list.stream()
@@ -39,6 +40,7 @@ public class MoodLogService {
                 .filter(moodLog -> moodLog.getUser().getId().equals(userId))
                 .sorted(Comparator.comparing(MoodLog::getCreatedAt).reversed());
     }
+
     List<MoodLog> findMoodLogsForWeek(Long userId, long weekStart) {
         List<MoodLog> list = findAll();
         return list.stream()
