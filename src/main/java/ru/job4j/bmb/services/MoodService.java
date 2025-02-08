@@ -1,5 +1,6 @@
 package ru.job4j.bmb.services;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import ru.job4j.bmb.content.Content;
 import ru.job4j.bmb.model.*;
@@ -20,6 +21,7 @@ public class MoodService {
     private final UserRepository userRepository;
     private final AchievementRepository achievementRepository;
     private final MoodRepository moodRepository;
+    private final ApplicationEventPublisher publisher;
     private final DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("dd-MM-yyyy HH:mm")
             .withZone(ZoneId.systemDefault());
@@ -28,18 +30,21 @@ public class MoodService {
                        RecommendationEngine recommendationEngine,
                        UserRepository userRepository,
                        AchievementRepository achievementRepository,
-                       MoodRepository moodRepository) {
+                       MoodRepository moodRepository,
+                       ApplicationEventPublisher publisher) {
         this.moodLogRepository = moodLogRepository;
         this.recommendationEngine = recommendationEngine;
         this.userRepository = userRepository;
         this.achievementRepository = achievementRepository;
         this.moodRepository = moodRepository;
+        this.publisher = publisher;
     }
 
     public Content chooseMood(User user, Long moodId) {
         Mood mood = moodRepository.findById(moodId)
                 .orElseThrow(() -> new IllegalArgumentException("Mood not found"));
         moodLogRepository.save(new MoodLog(user, mood, System.currentTimeMillis() / 1000));
+        publisher.publishEvent(new UserEvent(this, user));
         return recommendationEngine.recommendFor(user.getChatId(), moodId);
     }
 

@@ -1,31 +1,53 @@
 package ru.job4j.bmb.services;
 
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.stereotype.Component;
+import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ru.job4j.bmb.content.Content;
+import ru.job4j.bmb.model.MoodLog;
+import ru.job4j.bmb.repository.AwardRepository;
+import ru.job4j.bmb.repository.MoodLogRepository;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+import java.util.List;
 
-@Component
-public class AchievementService implements BeanNameAware {
-    private String beanName;
+@Service
+public class AchievementService implements ApplicationListener<UserEvent> {
+    private final SentContent sentContent;
+    private final MoodLogRepository moodLogRepository;
+    private final AwardRepository awardRepository;
 
+    public AchievementService(SentContent sentContent, MoodLogRepository moodLogRepository, AwardRepository awardRepository) {
+        this.sentContent = sentContent;
+        this.moodLogRepository = moodLogRepository;
+        this.awardRepository = awardRepository;
+    }
+
+    @Transactional
     @Override
-    public void setBeanName(String name) {
-        this.beanName = name;
-    }
-
-    public void displayBeanName() {
-        System.out.println(beanName);
-    }
-
-    @PostConstruct
-    public void init() {
-        System.out.println("Bean is going through @PostConstruct init.");
-    }
-
-    @PreDestroy
-    public void destroy() {
-        System.out.println("Bean will be destroyed via @PreDestroy.");
+    public void onApplicationEvent(UserEvent event) {
+        var user = event.getUser();
+        List<MoodLog> list = moodLogRepository.findByUserId(user.getId());
+        int counter = 0;
+        for (MoodLog log : list) {
+            if (log.getMood().isGood()) {
+                counter++;
+            } else {
+                counter--;
+            }
+        }
+        StringBuilder message = new StringBuilder();
+        int currentCounter = counter;
+        if (counter > 0) {
+            message.append("Your achievements: \n");
+            awardRepository.findAll().stream()
+                    .filter(award -> award.getDays() <= currentCounter)
+                    .forEach(award -> message.append(award.getTitle())
+                            .append(" : ").append(award.getDescription()));
+        } else {
+            message.append("You haven't achievements");
+        }
+        var content = new Content(user.getChatId());
+        content.setText(message.toString());
+        sentContent.sent(content);
     }
 }
