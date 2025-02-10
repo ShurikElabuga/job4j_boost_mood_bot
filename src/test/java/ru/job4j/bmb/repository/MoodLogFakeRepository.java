@@ -23,7 +23,6 @@ public class MoodLogFakeRepository extends CrudRepositoryFake<MoodLog, Long> imp
                 .collect(Collectors.toList());
     }
 
-
     public Stream<MoodLog> findByUserIdOrderByCreatedAtDesc(Long userId) {
         return memory.values().stream()
                 .filter(moodLog -> moodLog.getUser().getId().equals(userId))
