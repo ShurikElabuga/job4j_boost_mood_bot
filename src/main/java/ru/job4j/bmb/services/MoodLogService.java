@@ -32,7 +32,6 @@ public class MoodLogService {
                 .map(MoodLog::getUser)
                 .distinct()
                 .collect(Collectors.toList());
-
     }
 
     Stream<MoodLog> findByUserIdOrderByCreatedAtDesc(Long userId) {

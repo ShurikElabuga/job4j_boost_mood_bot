@@ -28,6 +28,7 @@ class ReminderServiceTest {
         var moodRepository = new MoodFakeRepository();
         moodRepository.save(new Mood("Good", true));
         var moodLogRepository = new MoodLogFakeRepository();
+        var moodLogService = new MoodLogService(moodLogRepository);
         var user = new User();
         user.setChatId(100);
         var moodLog = new MoodLog();
@@ -40,7 +41,7 @@ class ReminderServiceTest {
         moodLog.setCreatedAt(yesterday);
         moodLogRepository.save(moodLog);
         var tgUI = new TgUI(moodRepository);
-        new ReminderService(tgUI, moodLogRepository, sentContent)
+        new ReminderService(tgUI, moodLogService, sentContent)
                 .remindUsers();
         assertThat(result.iterator().next().getMarkup().getKeyboard()
                 .iterator().next().iterator().next().getText()).isEqualTo("Good");
@@ -58,6 +59,7 @@ class ReminderServiceTest {
         var moodRepository = new MoodFakeRepository();
         moodRepository.save(new Mood("Bad", false));
         var moodLogRepository = new MoodLogFakeRepository();
+        var moodLogService = new MoodLogService(moodLogRepository);
         var user = new User();
         user.setChatId(100);
         var moodLog = new MoodLog();
@@ -70,7 +72,7 @@ class ReminderServiceTest {
         moodLog.setCreatedAt(yesterday);
         moodLogRepository.save(moodLog);
         var tgUI = new TgUI(moodRepository);
-        new ReminderService(tgUI, moodLogRepository, sentContent)
+        new ReminderService(tgUI, moodLogService, sentContent)
                 .remindUsers();
         assertThat(result.iterator().next().getMarkup().getKeyboard()
                 .iterator().next().iterator().next().getText()).isEqualTo("Bad");
@@ -88,6 +90,7 @@ class ReminderServiceTest {
         var moodRepository = new MoodFakeRepository();
         moodRepository.save(new Mood("Good", true));
         var moodLogRepository = new MoodLogFakeRepository();
+        var moodLogService = new MoodLogService(moodLogRepository);
         var user = new User();
         user.setChatId(100);
         var moodLog = new MoodLog();
@@ -100,7 +103,7 @@ class ReminderServiceTest {
         moodLog.setCreatedAt(yesterday);
         moodLogRepository.save(moodLog);
         var tgUI = new TgUI(moodRepository);
-        new ReminderService(tgUI, moodLogRepository, sentContent)
+        new ReminderService(tgUI, moodLogService, sentContent)
                 .remindUsers();
         assertThat(result).isEmpty();
     }

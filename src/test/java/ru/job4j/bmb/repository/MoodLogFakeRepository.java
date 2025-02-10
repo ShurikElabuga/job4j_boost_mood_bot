@@ -23,23 +23,21 @@ public class MoodLogFakeRepository extends CrudRepositoryFake<MoodLog, Long> imp
                 .collect(Collectors.toList());
     }
 
-    @Override
+
     public Stream<MoodLog> findByUserIdOrderByCreatedAtDesc(Long userId) {
         return memory.values().stream()
                 .filter(moodLog -> moodLog.getUser().getId().equals(userId))
                 .sorted(Comparator.comparing(MoodLog::getCreatedAt).reversed());
     }
 
-    @Override
     public List<User> findUsersWhoDidNotVoteToday(long startOfDay, long endOfDay) {
         return memory.values().stream()
-                .filter(moodLog -> moodLog.getCreatedAt() < startOfDay)
+                .filter(moodLog -> moodLog.getCreatedAt() < startOfDay || moodLog.getCreatedAt() > endOfDay)
                 .map(MoodLog::getUser)
                 .distinct()
                 .collect(Collectors.toList());
     }
 
-    @Override
     public List<MoodLog> findMoodLogsForWeek(Long userId, long weekStart) {
         return memory.values().stream()
                 .filter(moodLog -> moodLog.getUser().getId().equals(userId))
@@ -47,7 +45,6 @@ public class MoodLogFakeRepository extends CrudRepositoryFake<MoodLog, Long> imp
                 .collect(Collectors.toList());
     }
 
-    @Override
     public List<MoodLog> findMoodLogsForMonth(Long userId, long monthStart) {
         return memory.values().stream()
                 .filter(moodLog -> moodLog.getUser().getId().equals(userId))
