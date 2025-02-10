@@ -41,7 +41,6 @@ public class MoodService {
     }
 
     public Content chooseMood(User user, Long moodId) {
-
         Mood mood = moodRepository.findById(moodId)
                 .orElseThrow(() -> new IllegalArgumentException("Mood not found"));
         moodLogRepository.save(new MoodLog(user, mood, System.currentTimeMillis() / 1000));
