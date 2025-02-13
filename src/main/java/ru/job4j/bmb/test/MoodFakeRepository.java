@@ -25,4 +25,5 @@ public class MoodFakeRepository extends CrudRepositoryFake<Mood, Long> implement
         }
         return super.save(mood);
     }
+
 }

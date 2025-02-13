@@ -1,8 +1,10 @@
-package ru.job4j.bmb.repository;
+package ru.job4j.bmb.test;
 
 import org.springframework.test.fake.CrudRepositoryFake;
 import ru.job4j.bmb.model.MoodLog;
 import ru.job4j.bmb.model.User;
+import ru.job4j.bmb.repository.MoodLogRepository;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,7 +18,6 @@ public class MoodLogFakeRepository extends CrudRepositoryFake<MoodLog, Long> imp
         return new ArrayList<>(memory.values());
     }
 
-    @Override
     public List<MoodLog> findByUserId(Long userId) {
         return memory.values().stream()
                 .filter(moodLog -> moodLog.getUser().getId().equals(userId))
