@@ -5,8 +5,8 @@ import ru.job4j.bmb.content.Content;
 import ru.job4j.bmb.model.Mood;
 import ru.job4j.bmb.model.MoodLog;
 import ru.job4j.bmb.model.User;
-import ru.job4j.bmb.repository.MoodFakeRepository;
-import ru.job4j.bmb.repository.MoodLogFakeRepository;
+import ru.job4j.bmb.test.MoodFakeRepository;
+import ru.job4j.bmb.test.MoodLogFakeRepository;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
