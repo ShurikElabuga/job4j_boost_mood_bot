@@ -22,6 +22,7 @@ public class Award {
     }
 
     public Award() {
+
     }
 
     public Long getId() {

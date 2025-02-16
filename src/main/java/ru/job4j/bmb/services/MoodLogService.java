@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 
 @Service
 public class MoodLogService {
-
     private final MoodLogRepository moodLogRepository;
 
     public MoodLogService(MoodLogRepository moodLogRepository) {

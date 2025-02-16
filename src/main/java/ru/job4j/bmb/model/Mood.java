@@ -20,6 +20,7 @@ public class Mood {
     }
 
     public Mood() {
+
     }
 
     public Long getId() {

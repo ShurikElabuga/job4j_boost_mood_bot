@@ -65,6 +65,7 @@ public class MoodService {
     }
 
     private String formatMoodLogs(List<MoodLog> logs, String title) {
+
         if (logs.isEmpty()) {
             return title + ":\nNo mood logs found.";
         }
