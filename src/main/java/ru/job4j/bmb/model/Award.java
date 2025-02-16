@@ -21,6 +21,9 @@ public class Award {
         this.days = days;
     }
 
+    public Award() {
+    }
+
     public Long getId() {
         return id;
     }

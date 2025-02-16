@@ -8,5 +8,4 @@ import java.util.List;
 public interface MoodContentRepository extends CrudRepository<MoodContent, Long> {
     List<MoodContent> findAll();
 
-    void saveAll(List<MoodContent> list);
 }

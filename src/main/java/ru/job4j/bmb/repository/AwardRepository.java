@@ -8,5 +8,5 @@ import java.util.List;
 public interface AwardRepository extends CrudRepository<Award, Long> {
     List<Award> findAll();
 
-    void saveAll(List<Award> list);
+  /*  void saveAll(List<Award> list);*/
 }

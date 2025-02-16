@@ -18,7 +18,6 @@ import java.util.Optional;
 public class MoodService {
     private final MoodLogRepository moodLogRepository;
     private final RecommendationEngine recommendationEngine;
-    private final UserRepository userRepository;
     private final AchievementRepository achievementRepository;
     private final MoodRepository moodRepository;
     private final ApplicationEventPublisher publisher;
@@ -28,13 +27,11 @@ public class MoodService {
 
     public MoodService(MoodLogRepository moodLogRepository,
                        RecommendationEngine recommendationEngine,
-                       UserRepository userRepository,
                        AchievementRepository achievementRepository,
                        MoodRepository moodRepository,
                        ApplicationEventPublisher publisher) {
         this.moodLogRepository = moodLogRepository;
         this.recommendationEngine = recommendationEngine;
-        this.userRepository = userRepository;
         this.achievementRepository = achievementRepository;
         this.moodRepository = moodRepository;
         this.publisher = publisher;

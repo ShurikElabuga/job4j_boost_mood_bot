@@ -1,5 +1,6 @@
 package ru.job4j.bmb.services;
 
+import org.springframework.stereotype.Service;
 import ru.job4j.bmb.model.MoodLog;
 import ru.job4j.bmb.model.User;
 import ru.job4j.bmb.repository.MoodLogRepository;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Service
 public class MoodLogService {
 
     private final MoodLogRepository moodLogRepository;
