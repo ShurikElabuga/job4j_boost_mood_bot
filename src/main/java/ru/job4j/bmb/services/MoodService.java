@@ -7,7 +7,6 @@ import ru.job4j.bmb.model.*;
 import ru.job4j.bmb.repository.AchievementRepository;
 import ru.job4j.bmb.repository.MoodLogRepository;
 import ru.job4j.bmb.repository.MoodRepository;
-import ru.job4j.bmb.repository.UserRepository;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -38,7 +37,6 @@ public class MoodService {
     }
 
     public Content chooseMood(User user, Long moodId) {
-
         Mood mood = moodRepository.findById(moodId)
                 .orElseThrow(() -> new IllegalArgumentException("Mood not found"));
         moodLogRepository.save(new MoodLog(user, mood, System.currentTimeMillis() / 1000));
@@ -65,7 +63,6 @@ public class MoodService {
     }
 
     private String formatMoodLogs(List<MoodLog> logs, String title) {
-
         if (logs.isEmpty()) {
             return title + ":\nNo mood logs found.";
         }

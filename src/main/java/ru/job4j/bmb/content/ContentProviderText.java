@@ -1,5 +1,8 @@
 package ru.job4j.bmb.content;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ContentProviderText implements ContentProvider {
 
     @Override
