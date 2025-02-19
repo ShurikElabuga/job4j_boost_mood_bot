@@ -47,6 +47,7 @@ public class BotCommandHandler {
         if (user.getClientId() != clientId) {
             user.setClientId(clientId);
         }
+
         user.setChatId(chatId);
         userRepository.save(user);
         var content = new Content(user.getChatId());
