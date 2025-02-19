@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 
 import java.io.File;
 
-@Service
+
 public class ContentProviderImage implements ContentProvider {
 
     @Override

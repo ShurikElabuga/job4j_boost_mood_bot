@@ -38,13 +38,13 @@ public class AchievementService implements ApplicationListener<UserEvent> {
         StringBuilder message = new StringBuilder();
         int currentCounter = counter;
         if (counter > 0) {
-            message.append("Your achievements: \n");
+            message.append("Ваши достижения: \n");
             awardRepository.findAll().stream()
                     .filter(award -> award.getDays() <= currentCounter)
                     .forEach(award -> message.append(award.getTitle())
                             .append(" : ").append(award.getDescription()));
         } else {
-            message.append("You haven't achievements");
+            message.append("У вас пока нет достижений.");
         }
         var content = new Content(user.getChatId());
         content.setText(message.toString());
