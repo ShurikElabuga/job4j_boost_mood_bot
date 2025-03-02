@@ -10,7 +10,6 @@ import ru.job4j.bmb.content.Content;
 import ru.job4j.bmb.services.BotCommandHandler;
 import ru.job4j.bmb.services.SentContent;
 
-
 @Service
 @Conditional(OnFakeCondition.class)
 public class TelegramBotFakeService extends TelegramLongPollingBot implements SentContent {
