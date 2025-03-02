@@ -24,7 +24,7 @@ public class BotCommandHandler {
         this.tgUI = tgUI;
     }
 
-    Optional<Content> commands(Message message) {
+   public Optional<Content> commands(Message message) {
         Optional<Content> result;
         result = switch (message.getText()) {
             case "/start" -> handleStartCommand(message.getChatId(), message.getFrom().getId());
@@ -36,7 +36,7 @@ public class BotCommandHandler {
         return result;
     }
 
-    Optional<Content> handleCallback(CallbackQuery callback) {
+   public Optional<Content> handleCallback(CallbackQuery callback) {
         var moodId = Long.valueOf(callback.getData());
         var user = userRepository.findByClientId(callback.getFrom().getId());
         return Optional.of(moodService.chooseMood(user, moodId));
