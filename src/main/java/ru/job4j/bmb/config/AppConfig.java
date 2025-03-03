@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableAspectJAutoProxy
 public class AppConfig {
-
     @Value("${telegram.bot.name}")
     private String telegramBotName;
 

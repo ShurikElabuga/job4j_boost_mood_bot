@@ -19,7 +19,7 @@ public class LoggingAspect {
 
     }
 
-    @Before("serveceLayer()")
+    @Before("serviceLayer()")
     public void logBefore(JoinPoint joinPoint) {
         LOG.info("Вызов метода: " + joinPoint.getSignature().getName());
     }
