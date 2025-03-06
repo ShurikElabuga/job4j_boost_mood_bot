@@ -12,12 +12,10 @@ import java.util.List;
 
 @Service
 public class AchievementService implements ApplicationListener<UserEvent> {
-    private final SentContent sentContent;
     private final MoodLogRepository moodLogRepository;
     private final AwardRepository awardRepository;
 
-    public AchievementService(SentContent sentContent, MoodLogRepository moodLogRepository, AwardRepository awardRepository) {
-        this.sentContent = sentContent;
+    public AchievementService(MoodLogRepository moodLogRepository, AwardRepository awardRepository) {
         this.moodLogRepository = moodLogRepository;
         this.awardRepository = awardRepository;
     }
@@ -48,6 +46,5 @@ public class AchievementService implements ApplicationListener<UserEvent> {
         }
         var content = new Content(user.getChatId());
         content.setText(message.toString());
-        sentContent.sent(content);
     }
 }
